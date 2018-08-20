@@ -1,14 +1,17 @@
 package main;
 
 public class Application {
-    public String Multiplication(int startNumber, int endNumber) {
+    public static void main(String[] args) {
+        System.out.print(Multiplication(1,9));
+    }
+    public static String Multiplication(int startNumber, int endNumber) {
         if (!judgeParameterIsNotIllegal(startNumber, endNumber)) {
             throw new IllegalArgumentException();
         }
         return getMultipTableResult(startNumber, endNumber);
     }
 
-    private String getMultipTableResult(int startNumber, int endNumber) {
+    private static String getMultipTableResult(int startNumber, int endNumber) {
         StringBuilder result = new StringBuilder();
         for (int multiplier = startNumber; multiplier <= endNumber; multiplier++) {
             for (int anotherMultiplier = 1; anotherMultiplier <= multiplier; anotherMultiplier++) {
@@ -22,7 +25,7 @@ public class Application {
         return result.toString();
     }
 
-    public Boolean judgeParameterIsNotIllegal(int startNumber, int endNumber) {
+    public static Boolean judgeParameterIsNotIllegal(int startNumber, int endNumber) {
         Boolean result = true;
         Boolean case1 = startNumber > endNumber;
         Boolean case2 = startNumber == endNumber;
