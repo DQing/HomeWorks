@@ -3,14 +3,14 @@ package main;
 public class Application {
     public String Multiplication(int startNumber, int endNumber) {
         if (!judgeParameterIsNotIllegal(startNumber, endNumber)) {
-            throw new IllegalArgumentException("IllegalArgumentException");
+            throw new IllegalArgumentException();
         }
         StringBuilder result = new StringBuilder();
         for (int multiplier = startNumber; multiplier <= endNumber; multiplier++) {
             for (int anotherMultiplier = 1; anotherMultiplier <= multiplier; anotherMultiplier++) {
                 result.append(anotherMultiplier + " * " + multiplier + " = " + anotherMultiplier * multiplier);
                 if (anotherMultiplier < multiplier) {
-                    result.append("   ");
+                    result.append("\t");
                 }
             }
             result.append("\n");
