@@ -35,4 +35,34 @@ public class ApplicationTest {
                 "1 * 5 = 5   2 * 5 = 10   3 * 5 = 15   4 * 5 = 20   5 * 5 = 25\n";
         assertEquals(exceptedResult, actualResult);
     }
+
+    @Test
+    void should_throw_error_when_startNumber_bigger() {
+        Application app = new Application();
+        try {
+            app.Multiplication(6, 5);
+        } catch (IllegalArgumentException error) {
+            assertEquals("IllegalArgumentException", error.getMessage());
+        }
+    }
+
+    @Test
+    void should_throw_error_when_startNumber_equals_endNumber() {
+        Application app = new Application();
+        try {
+            app.Multiplication(5, 5);
+        } catch (IllegalArgumentException error) {
+            assertEquals("IllegalArgumentException", error.getMessage());
+        }
+    }
+
+    @Test
+    void should_throw_error_when_startNumber_or_endNumber_is_minus() {
+        Application app = new Application();
+        try {
+            app.Multiplication(-2, 5);
+        } catch (IllegalArgumentException error) {
+            assertEquals("IllegalArgumentException", error.getMessage());
+        }
+    }
 }
