@@ -5,6 +5,10 @@ public class Application {
         if (!judgeParameterIsNotIllegal(startNumber, endNumber)) {
             throw new IllegalArgumentException();
         }
+        return getMultipTableResult(startNumber, endNumber);
+    }
+
+    private String getMultipTableResult(int startNumber, int endNumber) {
         StringBuilder result = new StringBuilder();
         for (int multiplier = startNumber; multiplier <= endNumber; multiplier++) {
             for (int anotherMultiplier = 1; anotherMultiplier <= multiplier; anotherMultiplier++) {
