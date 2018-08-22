@@ -1,8 +1,10 @@
 package main;
 
 public class Application {
+    private static final int PADDING = 6;
+    private static final int EXTRA_PADDING = 5;
     public static void main(String[] args) {
-        System.out.print(multiply(10, 200));
+        System.out.print(multiply(100000, 100001));
     }
 
     @SuppressWarnings("WeakerAccess")
@@ -15,21 +17,20 @@ public class Application {
 
     private static String getMultiplyTableResult(int startNumber, int endNumber) {
         StringBuilder result = new StringBuilder();
-        final int padding = 6;
-        final int extraPadding = 5;
-        final String templet = "%s * %s = %s";
-        int endNumberLength = String.valueOf(endNumber).length() * 2 + String.valueOf(endNumber * endNumber).length() + padding + extraPadding;
+
+        String templete = "%s * %s = %s";
+        int endNumberLength = String.valueOf(endNumber).length() * 2 + String.valueOf((long) endNumber * endNumber).length() + PADDING + EXTRA_PADDING;
         for (int multiplier = startNumber; multiplier <= endNumber; multiplier++) {
-            String innerResult;
-            for (int anotherMultiplier = 1; anotherMultiplier <= multiplier; anotherMultiplier++) {
-                innerResult = String.format(templet, anotherMultiplier, multiplier, anotherMultiplier * multiplier);
-                int gap = endNumberLength - innerResult.length();
+            String inlineResult;
+            for (int anotherMultiplier = startNumber; anotherMultiplier <= multiplier; anotherMultiplier++) {
+                inlineResult = String.format(templete, anotherMultiplier, multiplier, (long) anotherMultiplier * multiplier);
+                int gap = endNumberLength - inlineResult.length();
                 if (anotherMultiplier < multiplier) {
                     for (int i = 0; i < gap; i++) {
-                        innerResult += " ";
+                        inlineResult += " ";
                     }
                 }
-                result.append(innerResult);
+                result.append(inlineResult);
             }
             result.append("\n");
         }
