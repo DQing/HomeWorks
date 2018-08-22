@@ -22,8 +22,7 @@ public class Application {
             String inlineResult;
             for (int anotherMultiplier = startNumber; anotherMultiplier <= multiplier; anotherMultiplier++) {
                 inlineResult = String.format(templete, anotherMultiplier, multiplier, (long) anotherMultiplier * multiplier);
-                int gap = endNumberLength - inlineResult.length();
-                inlineResult = getAddPaddingString(multiplier, inlineResult, anotherMultiplier, gap);
+                inlineResult = getAddPaddingString(endNumberLength, multiplier, inlineResult, anotherMultiplier);
                 result.append(inlineResult);
             }
             result.append("\n");
@@ -31,8 +30,9 @@ public class Application {
         return result.toString();
     }
 
-    private static String getAddPaddingString(int multiplier, String inlineResult, int anotherMultiplier, int gap) {
+    private static String getAddPaddingString(int endNumberLength, int multiplier, String inlineResult, int anotherMultiplier) {
         String result = inlineResult;
+        int gap = endNumberLength - result.length();
         if (anotherMultiplier < multiplier) {
             for (int i = 0; i < gap; i++) {
                 result += " ";
