@@ -2,37 +2,41 @@ package main;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.print(Multiplication(1,9));
-    }
-    public static String Multiplication(int startNumber, int endNumber) {
-        if (!judgeParameterIsNotIllegal(startNumber, endNumber)) {
-            throw new IllegalArgumentException();
-        }
-        return getMultipTableResult(startNumber, endNumber);
+        System.out.print(multiply(10, 200));
     }
 
-    private static String getMultipTableResult(int startNumber, int endNumber) {
+    @SuppressWarnings("WeakerAccess")
+    public static String multiply(int startNumber, int endNumber) {
+        if (!judgeParameterIsValid(startNumber, endNumber)) {
+            throw new IllegalArgumentException();
+        }
+        return getMultiplyTableResult(startNumber, endNumber);
+    }
+
+    private static String getMultiplyTableResult(int startNumber, int endNumber) {
         StringBuilder result = new StringBuilder();
+        final int padding = 6;
+        final int extraPadding = 5;
+        final String templet = "%s * %s = %s";
+        int endNumberLength = String.valueOf(endNumber).length() * 2 + String.valueOf(endNumber * endNumber).length() + padding + extraPadding;
         for (int multiplier = startNumber; multiplier <= endNumber; multiplier++) {
+            String innerResult;
             for (int anotherMultiplier = 1; anotherMultiplier <= multiplier; anotherMultiplier++) {
-                result.append(anotherMultiplier + " * " + multiplier + " = " + anotherMultiplier * multiplier);
+                innerResult = String.format(templet, anotherMultiplier, multiplier, anotherMultiplier * multiplier);
+                int gap = endNumberLength - innerResult.length();
                 if (anotherMultiplier < multiplier) {
-                    result.append("\t");
+                    for (int i = 0; i < gap; i++) {
+                        innerResult += " ";
+                    }
                 }
+                result.append(innerResult);
             }
             result.append("\n");
         }
         return result.toString();
     }
 
-    public static Boolean judgeParameterIsNotIllegal(int startNumber, int endNumber) {
-        Boolean result = true;
-        Boolean case1 = startNumber > endNumber;
-        Boolean case2 = startNumber == endNumber;
-        Boolean case3 = startNumber < 0 || endNumber < 0;
-
-        if (case1 || case2 || case3)
-            result = false;
-        return result;
+    private static boolean judgeParameterIsValid(int startNumber, int endNumber) {
+        return startNumber < endNumber && startNumber > 0;
     }
 }
