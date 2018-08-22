@@ -7,7 +7,6 @@ public class Application {
     public static void main(String[] args) {
         System.out.print(getMultiplicationTable(100000, 100001));
     }
-
     @SuppressWarnings("WeakerAccess")
     public static String getMultiplicationTable(int startNumber, int endNumber) {
         judgeParameterIsValid(startNumber, endNumber);
@@ -31,14 +30,14 @@ public class Application {
     }
 
     private static String getAddPaddingString(int endNumberLength, int multiplier, String inlineResult, int anotherMultiplier) {
-        String result = inlineResult;
+        StringBuilder result = new StringBuilder(inlineResult);
         int gap = endNumberLength - result.length();
         if (anotherMultiplier < multiplier) {
             for (int i = 0; i < gap; i++) {
-                result += " ";
+                result.append(" ");
             }
         }
-        return result;
+        return result.toString();
     }
 
     private static void judgeParameterIsValid(int startNumber, int endNumber) {
